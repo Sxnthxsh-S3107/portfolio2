@@ -1,0 +1,89 @@
+{
+  "name": "Santhosh S",
+  "title": "Electronics & Computer Engineering Student | ML & Computer Vision Enthusiast",
+  "tagline": "Building intelligent systems with deep learning and computer vision",
+
+  "contact": {
+    "phone": "+91-9597363959",
+    "email": "santhosh.sampath2024@vitstudent.ac.in",
+    "github": "https://github.com/Sxnthxsh-S3107",
+    "linkedin": "https://linkedin.com"
+  },
+
+  "about": "Second-year Electronics & Computer Engineering undergraduate at VIT Chennai with strong hands-on experience in deep learning and computer vision. Skilled in building end-to-end segmentation and detection pipelines using PyTorch. Passionate about advancing in machine learning fundamentals including probability, optimization, and applied AI systems.",
+
+  "education": [
+    {
+      "degree": "B.Tech in Electronics & Computer Engineering",
+      "institution": "Vellore Institute of Technology, Chennai",
+      "year": "2024 – 2028",
+      "cgpa": "8.67/10"
+    },
+    {
+      "degree": "Intermediate / +2",
+      "institution": "Narayana E-techno School",
+      "year": "2022 – 2024",
+      "score": "78%"
+    },
+    {
+      "degree": "CBSE / 10th",
+      "institution": "Lalaji Memorial Omega International School",
+      "year": "2021 – 2022",
+      "score": "94%"
+    }
+  ],
+
+  "skills": {
+    "programming": ["Python", "Java", "C", "C++"],
+    "ml_tools": ["PyTorch", "NumPy", "Pandas", "Scikit-learn", "OpenCV", "Albumentations", "Matplotlib"],
+    "ml_concepts": ["CNNs", "UNet++", "Object Detection", "Image Segmentation", "Transfer Learning", "TTA", "Data Augmentation", "IoU", "Dice", "F1 Score"],
+    "geospatial": ["QGIS", "NDWI", "Satellite Data Processing"]
+  },
+
+  "experience": [
+    {
+      "role": "Full Stack Developer Intern",
+      "company": "ESG Sentinel Pvt. Ltd.",
+      "duration": "May 2026 – June 2026",
+      "details": [
+        "Worked on end-to-end enterprise compliance platform",
+        "Built and integrated features across frontend, backend, database",
+        "Used professional Git workflows in team environment"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Glacial Lake Detection (GLOF Challenge)",
+      "description": "Built UNet++ segmentation model with EfficientNet-B3 for satellite imagery analysis using RGB + NDWI.",
+      "tech": ["PyTorch", "UNet++", "Computer Vision", "Deep Learning"],
+      "github": ""
+    },
+    {
+      "title": "YOLOv8 + ECA Floor Plan Detection",
+      "description": "Enhanced YOLOv8n with Efficient Channel Attention for detecting structural elements in floor plans.",
+      "tech": ["YOLOv8", "Computer Vision", "Deep Learning"],
+      "github": ""
+    },
+    {
+      "title": "Water Body Mapping using NDWI",
+      "description": "Used QGIS and satellite imagery to detect and analyze water bodies.",
+      "tech": ["QGIS", "Remote Sensing"],
+      "github": ""
+    }
+  ],
+
+  "certifications": [
+    {
+      "title": "Remote Sensing & GIS Internship",
+      "org": "India Space Academy",
+      "year": "2025"
+    },
+    {
+      "title": "Oracle Cloud Generative AI Professional",
+      "org": "Oracle University",
+      "year": "2025"
+    }
+  ]
+}
