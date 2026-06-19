@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import resumeData from '../../data/resumeData.json';
 
 const GithubIcon = ({ size = 24, className = "" }) => (
@@ -11,78 +13,146 @@ const GithubIcon = ({ size = 24, className = "" }) => (
 );
 
 const ProjectCard = ({ project, index }) => {
+  const cardRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      // Parallax effect for the image inside the card
+      gsap.to(imageRef.current, {
+        y: "20%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+
+      // Reveal animation for the card itself
+      gsap.fromTo(cardRef.current, 
+        { opacity: 0, y: 100, scale: 0.95 },
+        { 
+          opacity: 1, y: 0, scale: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 85%",
+            end: "top 50%",
+            scrub: 1,
+          }
+        }
+      );
+    });
+    return () => mm.revert();
+  }, []);
+
+  // Alternate image position left/right on desktop
+  const isEven = index % 2 === 0;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      className="glass-card group relative overflow-hidden"
+    <div
+      ref={cardRef}
+      className={`group relative flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} bg-[var(--color-brand-card)] rounded-[2rem] overflow-hidden w-full`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-neon/10 to-brand-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-      
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="w-full h-48 rounded-lg overflow-hidden mb-6 bg-brand-black/50 relative border border-glass-border">
+      <div className="w-full md:w-1/2 h-64 md:h-auto min-h-[300px] lg:min-h-[400px] bg-black overflow-hidden relative">
+         <a href={project.github || "#"} target={project.github ? "_blank" : "_self"} rel="noreferrer" className="block w-full h-full cursor-pointer">
            <img 
+              ref={imageRef}
               src={`/assets/images/projects/project${index + 1}.png`} 
               alt={project.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              className="absolute top-[-10%] left-0 w-full h-[120%] object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = `https://via.placeholder.com/600x400/0a0a0a/8a2be2?text=Project+${index+1}`;
+                e.target.src = `https://via.placeholder.com/800x600/111111/444444?text=Project+Image`;
               }}
            />
-        </div>
+         </a>
+         {/* Gradient overlay to blend image edge with card color on desktop */}
+         <div className={`hidden md:block absolute inset-0 bg-gradient-to-${isEven ? 'l' : 'r'} from-[var(--color-brand-card)] to-transparent w-full h-full pointer-events-none`}></div>
+      </div>
 
-        <h3 className="text-2xl font-heading font-bold mb-3 group-hover:text-brand-neon transition-colors">
-          {project.title}
-        </h3>
+      <div className="w-full md:w-1/2 flex flex-col justify-center p-8 lg:p-16 z-10">
+        <a href={project.github || "#"} target={project.github ? "_blank" : "_self"} rel="noreferrer" className="block w-fit cursor-pointer hover:text-[var(--color-brand-orange)] transition-colors">
+          <h3 className="text-3xl lg:text-4xl font-heading font-bold mb-4 text-white hover:text-inherit transition-colors">
+            {project.title}
+          </h3>
+        </a>
         
-        <p className="text-gray-400 mb-6 flex-grow">
+        <p className="text-gray-400 mb-8 font-body text-base lg:text-lg leading-relaxed">
           {project.description}
         </p>
 
-        <div className="mb-6 flex flex-wrap gap-2">
+        <div className="mb-8 flex flex-wrap gap-3">
           {project.tech.map((tech) => (
-            <span key={tech} className="text-xs font-medium px-2 py-1 rounded bg-brand-neon/10 text-brand-neon border border-brand-neon/20">
+            <span key={tech} className="text-sm font-semibold px-4 py-2 rounded-full bg-white/5 text-gray-300">
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-glass-border">
+        <div className="flex items-center gap-6 mt-auto pt-6 border-t border-white/10">
           {project.github && (
-            <a href={project.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white hover:text-glow transition-all">
-              <GithubIcon size={20} />
+            <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group/link">
+              <GithubIcon size={24} />
+              <span className="font-medium">View Source</span>
             </a>
           )}
-          <a href="#" className="text-gray-400 hover:text-brand-neon hover:text-glow transition-all ml-auto">
-            <ExternalLink size={20} />
-          </a>
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[var(--color-brand-orange)] hover:text-white transition-colors ml-auto font-medium">
+              Live Demo <ExternalLink size={20} />
+            </a>
+          )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const Projects = () => {
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      gsap.to(headingRef.current, {
+        backgroundPosition: "200% center",
+        ease: "none",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    });
+    return () => mm.revert();
+  }, []);
+
   return (
-    <section id="projects" className="py-24 px-6 relative">
-      <div className="container mx-auto max-w-6xl relative z-10">
+    <section id="projects" className="py-32 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
+          className="mb-20 text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Featured <span className="text-brand-neon">Projects</span>
+          <p className="text-[var(--color-brand-orange)] font-heading font-medium mb-4 uppercase tracking-wider text-sm">
+            Featured Work
+          </p>
+          <h2 
+            ref={headingRef}
+            className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gradient-animate inline-block"
+          >
+            Recent Projects
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-brand-neon to-brand-purple rounded-full mx-auto"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col space-y-12 lg:space-y-24">
           {resumeData.projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

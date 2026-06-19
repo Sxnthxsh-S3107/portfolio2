@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { motion } from 'framer-motion';
-import ParticleBackground from './ParticleBackground';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './Navbar';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -32,7 +35,6 @@ const Layout = ({ children }) => {
 
   return (
     <div className="relative min-h-screen bg-brand-black text-white">
-      <ParticleBackground />
       <Navbar />
       <motion.main
         initial={{ opacity: 0 }}

@@ -1,60 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Loader = ({ onComplete }) => {
-  const [particles, setParticles] = useState([]);
-
   useEffect(() => {
-    // Generate particles for a cool effect before spelling name
-    const particleCount = 50;
-    const newParticles = Array.from({ length: particleCount }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 100 - 50,
-      y: Math.random() * 100 - 50,
-      scale: Math.random() * 0.5 + 0.5,
-      delay: Math.random() * 1,
-    }));
-    setParticles(newParticles);
-
     const timer = setTimeout(() => {
       onComplete();
-    }, 3500); // Wait 3.5s before completing
-
+    }, 2500); 
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-brand-black overflow-hidden"
+      exit={{ opacity: 0, y: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--color-brand-black)]"
     >
-      <div className="relative">
-        {particles.map((p) => (
-          <motion.div
-            key={p.id}
-            initial={{ opacity: 0, x: p.x * 10, y: p.y * 10 }}
-            animate={{
-              opacity: [0, 1, 0],
-              x: 0,
-              y: 0,
-            }}
-            transition={{
-              duration: 2,
-              delay: p.delay,
-              ease: "circOut",
-            }}
-            className="absolute w-2 h-2 rounded-full bg-brand-neon"
-          />
-        ))}
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.5, delay: 1.5, ease: "easeOut" }}
-          className="text-5xl md:text-7xl font-heading font-bold text-white tracking-widest text-glow"
+      <div className="overflow-hidden">
+        <motion.h1 
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-6xl font-heading font-extrabold text-white tracking-tighter"
         >
-          SANTHOSH
+          Santhosh S.
         </motion.h1>
+      </div>
+      <div className="w-48 h-[2px] bg-white/10 mt-6 relative overflow-hidden rounded-full">
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "0%" }}
+          transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
+          className="absolute inset-0 bg-[var(--color-brand-orange)]"
+        ></motion.div>
       </div>
     </motion.div>
   );

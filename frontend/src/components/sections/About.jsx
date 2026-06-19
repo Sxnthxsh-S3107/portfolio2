@@ -1,43 +1,76 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import resumeData from '../../data/resumeData.json';
 
 const About = () => {
-  return (
-    <section id="about" className="py-24 px-6 relative">
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            About <span className="text-brand-neon">Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-brand-neon to-brand-purple mx-auto rounded-full"></div>
-        </motion.div>
+  const headingRef = useRef(null);
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-card relative overflow-hidden group"
-        >
-          {/* Subtle glowing background effect on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-neon/5 to-brand-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      gsap.to(headingRef.current, {
+        backgroundPosition: "200% center",
+        ease: "none",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    });
+    return () => mm.revert();
+  }, []);
+
+  return (
+    <section id="about" className="py-32 px-6 bg-[var(--color-brand-black)] relative">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           
-          <div className="relative z-10 p-4 md:p-8">
-            <h3 className="text-2xl font-heading text-white mb-6">
-              {resumeData.title}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-[var(--color-brand-orange)] font-heading font-medium mb-4 uppercase tracking-wider text-sm">
+              Behind the code
+            </p>
+            <h2 
+              ref={headingRef}
+              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-8 text-gradient-animate"
+            >
+              Shaping <br/>
+              Intelligent Systems <br/>
+              That Make Sense
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="md:pt-12"
+          >
+            <h3 className="text-xl md:text-2xl font-heading text-white mb-6 font-medium leading-relaxed">
+              I'm an engineer focused on building robust machine learning pipelines that solve real-world problems.
             </h3>
-            <p className="text-lg text-gray-300 leading-relaxed font-body">
+            <p className="text-gray-400 text-lg leading-relaxed font-body mb-8">
               {resumeData.about}
             </p>
-          </div>
-        </motion.div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-500 font-medium">Let's Build Something Meaningful</span>
+              <div className="h-px w-12 bg-gray-700"></div>
+              <a href="#contact" className="text-sm font-medium text-white hover:text-[var(--color-brand-orange)] transition-colors">
+                Get in touch →
+              </a>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

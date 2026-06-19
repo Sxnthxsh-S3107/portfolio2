@@ -22,14 +22,12 @@
     {
       "degree": "Intermediate / +2",
       "institution": "Narayana E-techno School",
-      "year": "2022 – 2024",
-      "score": "78%"
+      "year": "2022 – 2024"
     },
     {
       "degree": "CBSE / 10th",
       "institution": "Lalaji Memorial Omega International School",
-      "year": "2021 – 2022",
-      "score": "94%"
+      "year": "2021 – 2022"
     }
   ],
 
@@ -49,7 +47,8 @@
         "Worked on end-to-end enterprise compliance platform",
         "Built and integrated features across frontend, backend, database",
         "Used professional Git workflows in team environment"
-      ]
+      ],
+      "fullDescription": "Completed My Internship as a Software Development Intern (Supply Chain & GIS)\n\nOver the past month, I had the opportunity to work on a live enterprise application and gain hands-on exposure to how large-scale software systems are built, maintained, and improved in real-world environments.\n\nThis internship helped me move beyond simply writing code and understand how technology supports business operations, workflow management, traceability, location-based systems, and data-driven decision-making.\n\nSome of the areas I worked with and learned about:\n\n🔹 Frontend development and user experience design\n🔹 Backend APIs and system integrations\n🔹 Database management and data handling\n🔹 GIS and geospatial data workflows\n🔹 Supply chain processes and operational workflows\n🔹 Inventory movement concepts such as inbound and outbound operations\n🔹 Warehouse and logistics management systems\n🔹 User roles, permissions, and access management\n🔹 Git version control and branching strategies\n🔹 Debugging issues across frontend, backend, and database layers\n🔹 Understanding servers, deployments, and production environments\n\nOne perspective that changed significantly during this internship was my understanding of AI. Throughout college, I often heard discussions about AI replacing jobs and reducing opportunities for developers. However, working in a real-world development environment showed me a completely different side of it. I saw how AI is being used to improve productivity, speed up development, assist in debugging, simplify research, and help teams solve problems more efficiently. Rather than replacing people, AI has become a powerful tool that enables professionals to focus on higher-value work and deliver better results.\n\nOne of the most valuable lessons from this experience was understanding how different modules of an application work together—from user onboarding and operational workflows to inventory tracking, reporting, warehouse operations, and system administration. Seeing how a live product functions behind the scenes gave me a much deeper appreciation for the complexity and collaboration involved in building reliable software.\n\nWorking on a live project also taught me the importance of writing maintainable code, collaborating with a team, investigating issues methodically, and ensuring that every change works reliably within a larger system.\n\nI'm grateful to my mentors and teammates for their guidance and support throughout this journey. This experience has strengthened both my technical and problem-solving skills, broadened my understanding of how technology supports real-world business operations, and motivated me to continue learning and growing as a software developer."
     }
   ],
 
@@ -58,19 +57,29 @@
       "title": "Glacial Lake Detection (GLOF Challenge)",
       "description": "Built UNet++ segmentation model with EfficientNet-B3 for satellite imagery analysis using RGB + NDWI.",
       "tech": ["PyTorch", "UNet++", "Computer Vision", "Deep Learning"],
-      "github": ""
+      "github": "https://github.com/vizarrd/ICE_KATTI_GLOF_Challenge",
+      "demo": "https://www.youtube.com/watch?v=WzjRic_fPHM&t=53s"
     },
     {
       "title": "YOLOv8 + ECA Floor Plan Detection",
-      "description": "Enhanced YOLOv8n with Efficient Channel Attention for detecting structural elements in floor plans.",
+      "description": "Enhanced YOLOv8n with Efficient Channel Attention for detecting structural elements in floor plans. Currently under review for publication.",
       "tech": ["YOLOv8", "Computer Vision", "Deep Learning"],
       "github": ""
+    }
+  ],
+
+  "coCurricular": [
+    {
+      "title": "Design Lead",
+      "description": "Led poster design and short-form video editing for student projects, guiding visual content creation."
     },
     {
-      "title": "Water Body Mapping using NDWI",
-      "description": "Used QGIS and satellite imagery to detect and analyze water bodies.",
-      "tech": ["QGIS", "Remote Sensing"],
-      "github": ""
+      "title": "Marketing & Social Media",
+      "description": "Event promotion and content management focused on reach and engagement."
+    },
+    {
+      "title": "Collaboration & Networking",
+      "description": "Team coordination, peer mentoring, and active participation in student communities."
     }
   ],
 
@@ -78,12 +87,14 @@
     {
       "title": "Remote Sensing & GIS Internship",
       "org": "India Space Academy",
-      "year": "2025"
+      "year": "July–August 2025",
+      "description": "Successfully completed a four-week internship as a Remote Sensing and GIS Intern, involving structured training and project-based work in Remote Sensing and Geographic Information Systems (GIS). Demonstrated strong analytical skills, coding proficiency, and problem-solving abilities. Completed a project on mapping water bodies using NDWI from multispectral satellite imagery for water resource management applications."
     },
     {
-      "title": "Oracle Cloud Generative AI Professional",
+      "title": "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
       "org": "Oracle University",
-      "year": "2025"
+      "year": "July 2025",
+      "description": "Earned Oracle Certified Professional recognition through Oracle University, validating knowledge in Generative AI concepts, Oracle Cloud Infrastructure, and AI-driven application development. Demonstrates proficiency in leveraging cloud-based AI tools for modern computing solutions."
     }
   ]
 }

@@ -1,23 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-black: #0a0a0a;
-  --color-brand-neon: #00f3ff;
-  --color-brand-purple: #8a2be2;
-  --color-glass-bg: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --font-heading: "Clash Display", "Satoshi", sans-serif;
-  --font-body: "Inter", "Poppins", sans-serif;
+  --color-brand-black: #0d0d0d;
+  --color-brand-card: #1a1a1a;
+  --color-brand-orange: #ff5722;
+  --color-brand-orange-dark: #e64a19;
+  
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html {
-  scroll-behavior: initial; /* Lenis handles it */
+  scroll-behavior: initial;
 }
 
 body {
-  background-color: #0a0a0a;
+  background-color: var(--color-brand-black);
   color: white;
-  font-family: "Inter", "Poppins", sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -25,32 +26,30 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
-.glass {
-  background-color: var(--color-glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
+.card {
+  background-color: var(--color-brand-card);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: transform 0.3s ease;
 }
 
-.glass-card {
-  background-color: var(--color-glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
-}
-
-.text-glow {
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
-}
-
-.text-glow-purple {
-  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(138, 43, 226, 0.3);
+/* Gradient Text Animation Setup */
+.text-gradient-animate {
+  background: linear-gradient(
+    to right, 
+    #ffffff 20%, 
+    var(--color-brand-orange) 40%, 
+    var(--color-brand-orange-dark) 60%, 
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* GSAP will animate backgroundPosition from 0% to 200% on scroll */
 }
 
 /* Custom Scrollbar */
@@ -58,14 +57,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0d0d0d;
 }
 ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #ff5722;
 }
 
 /* Lenis Recommended */

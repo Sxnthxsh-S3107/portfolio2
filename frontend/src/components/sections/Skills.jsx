@@ -4,12 +4,12 @@ import resumeData from '../../data/resumeData.json';
 
 const SkillBadge = ({ skill, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 10 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.05 }}
-    whileHover={{ y: -5, scale: 1.05 }}
-    className="px-4 py-2 rounded-full glass text-sm font-medium border border-brand-neon/20 hover:border-brand-neon/60 hover:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all cursor-default"
+    transition={{ duration: 0.4, delay: index * 0.03 }}
+    whileHover={{ y: -2 }}
+    className="px-4 py-2 rounded-full bg-white/5 text-gray-200 text-sm font-medium border border-white/5 hover:bg-[var(--color-brand-orange)] hover:text-white hover:border-[var(--color-brand-orange)] transition-colors cursor-default"
   >
     {skill}
   </motion.div>
@@ -26,8 +26,8 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 relative">
-      <div className="container mx-auto max-w-6xl relative z-10">
+    <section id="skills" className="py-24 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,26 +35,28 @@ const Skills = () => {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
+          <p className="text-[var(--color-brand-orange)] font-heading font-medium mb-4 uppercase tracking-wider text-sm">
+            Expertise
+          </p>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Technical <span className="text-brand-purple">Arsenal</span>
+            Technical Arsenal
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-brand-purple to-brand-neon rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, x: catIndex % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: catIndex * 0.2 }}
-              className="glass-card"
+              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+              className="bg-[var(--color-brand-card)] rounded-[2rem] p-8"
             >
-              <h3 className="text-xl font-heading text-white mb-6 border-b border-glass-border pb-4">
+              <h3 className="text-xl font-heading font-bold text-white mb-6">
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, index) => (
                   <SkillBadge key={skill} skill={skill} index={index} />
                 ))}

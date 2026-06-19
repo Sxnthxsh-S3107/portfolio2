@@ -42,7 +42,6 @@ const Contact = () => {
       if (response.ok) {
         setStatus({ submitting: false, success: true, error: null });
         setFormData({ name: '', email: '', message: '' });
-        // Reset success message after 5 seconds
         setTimeout(() => setStatus(s => ({ ...s, success: false })), 5000);
       } else {
         setStatus({ submitting: false, success: false, error: data.error || 'Something went wrong' });
@@ -53,81 +52,61 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative">
-      <div className="container mx-auto max-w-5xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Get In <span className="text-brand-neon">Touch</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-brand-neon to-brand-purple rounded-full mx-auto"></div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-5 gap-12">
-          {/* Contact Info */}
+    <section id="contact" className="py-32 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
+      <div className="container mx-auto max-w-7xl">
+        
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="md:col-span-2 space-y-8"
           >
-            <div className="glass p-8 rounded-2xl h-full flex flex-col justify-center">
-              <h3 className="text-2xl font-heading font-bold mb-6">Contact Information</h3>
-              
-              <div className="space-y-6">
-                <a href={`mailto:${resumeData.contact.email}`} className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-brand-neon/10 flex items-center justify-center text-brand-neon group-hover:bg-brand-neon group-hover:text-brand-black transition-colors">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Email</p>
-                    <p className="font-medium">{resumeData.contact.email}</p>
-                  </div>
-                </a>
-                
-                <a href={`tel:${resumeData.contact.phone}`} className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-brand-purple/10 flex items-center justify-center text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors">
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Phone</p>
-                    <p className="font-medium">{resumeData.contact.phone}</p>
-                  </div>
-                </a>
-              </div>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 leading-[1.1]">
+              Let's Build <br/>
+              Something <br/>
+              <span className="text-[var(--color-brand-orange)]">Meaningful.</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-12 max-w-sm">
+              I'm always open to discussing applied AI systems, computer vision challenges, or potential partnerships.
+            </p>
 
-              <div className="mt-12">
-                <h4 className="text-lg font-heading font-bold mb-4 border-b border-glass-border pb-2">Socials</h4>
-                <div className="flex gap-4">
-                  <a href={resumeData.contact.github} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-brand-neon hover:border-brand-neon transition-colors">
-                    <GithubIcon size={20} />
-                  </a>
-                  <a href={resumeData.contact.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-brand-neon hover:border-brand-neon transition-colors">
-                    <LinkedinIcon size={20} />
-                  </a>
+            <div className="space-y-6 mb-12">
+              <a href={`mailto:${resumeData.contact.email}`} className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <Mail size={18} />
                 </div>
-              </div>
+                <span className="font-medium">{resumeData.contact.email}</span>
+              </a>
+              
+              <a href={`tel:${resumeData.contact.phone}`} className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <Phone size={18} />
+                </div>
+                <span className="font-medium">{resumeData.contact.phone}</span>
+              </a>
+            </div>
+
+            <div className="flex gap-4">
+              <a href={resumeData.contact.github} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-brand-orange)] hover:border-[var(--color-brand-orange)] transition-colors">
+                <GithubIcon size={20} />
+              </a>
+              <a href={resumeData.contact.linkedin} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-brand-orange)] hover:border-[var(--color-brand-orange)] transition-colors">
+                <LinkedinIcon size={20} />
+              </a>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="md:col-span-3"
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="glass-card">
+            <div className="bg-[var(--color-brand-card)] rounded-[2rem] p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -135,13 +114,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-brand-black/50 border border-glass-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-neon transition-colors"
+                    className="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[var(--color-brand-orange)] transition-colors font-body"
                     placeholder="John Doe"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
                   <input
                     type="email"
                     id="email"
@@ -149,7 +128,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-brand-black/50 border border-glass-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-neon transition-colors"
+                    className="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[var(--color-brand-orange)] transition-colors font-body"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -162,28 +141,28 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full bg-brand-black/50 border border-glass-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-neon transition-colors resize-none"
-                    placeholder="Your message here..."
+                    rows={4}
+                    className="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[var(--color-brand-orange)] transition-colors resize-none font-body"
+                    placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
                 {status.error && (
-                  <p className="text-red-400 text-sm">{status.error}</p>
+                  <p className="text-red-400 text-sm font-medium">{status.error}</p>
                 )}
                 
                 {status.success && (
-                  <p className="text-green-400 text-sm">Message sent successfully!</p>
+                  <p className="text-green-400 text-sm font-medium">Message sent successfully!</p>
                 )}
 
                 <button
                   type="submit"
                   disabled={status.submitting}
-                  className="w-full py-4 rounded-lg bg-brand-neon text-brand-black font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 mt-4 rounded-xl bg-[var(--color-brand-orange)] text-white font-bold flex items-center justify-center gap-2 hover:bg-[var(--color-brand-orange-dark)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-lg"
                 >
                   {status.submitting ? 'Sending...' : (
                     <>
-                      Send Message <Send size={18} />
+                      Send Message <Send size={20} />
                     </>
                   )}
                 </button>
