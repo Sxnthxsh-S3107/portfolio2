@@ -48,7 +48,7 @@ const Hero = () => {
               <img 
                 src="/assets/images/profile.JPG" 
                 alt={resumeData.name}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-[60%_top]"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'https://via.placeholder.com/600x800/1a1a1a/ff5722?text=Upload+profile.JPG';
