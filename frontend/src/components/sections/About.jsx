@@ -25,16 +25,17 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-32 px-6 bg-[var(--color-brand-black)] relative">
-      <div className="container mx-auto max-w-7xl">
+    <section id="about" className="py-16 px-6 bg-[var(--color-brand-black)] relative">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="container mx-auto max-w-7xl"
+      >
         <div className="grid md:grid-cols-2 gap-16 items-start">
           
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <p className="text-[var(--color-brand-orange)] font-heading font-medium mb-4 uppercase tracking-wider text-sm">
               Behind the code
             </p>
@@ -46,15 +47,9 @@ const About = () => {
               Intelligent Systems <br/>
               That Make Sense
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:pt-12"
-          >
+          <div className="md:pt-12">
             <h3 className="text-xl md:text-2xl font-heading text-white mb-6 font-medium leading-relaxed">
               I'm an engineer focused on building robust machine learning pipelines that solve real-world problems.
             </h3>
@@ -68,10 +63,10 @@ const About = () => {
                 Get in touch →
               </a>
             </div>
-          </motion.div>
+          </div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

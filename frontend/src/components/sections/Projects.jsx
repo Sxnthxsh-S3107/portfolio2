@@ -31,17 +31,17 @@ const ProjectCard = ({ project, index }) => {
         }
       });
 
-      // Reveal animation for the card itself
+      // Smooth scroll reveal animation for the card itself
       gsap.fromTo(cardRef.current, 
-        { opacity: 0, y: 100, scale: 0.95 },
+        { opacity: 0, y: 80, scale: 0.97 },
         { 
           opacity: 1, y: 0, scale: 1,
-          duration: 1,
+          ease: "power1.out",
           scrollTrigger: {
             trigger: cardRef.current,
-            start: "top 85%",
-            end: "top 50%",
-            scrub: 1,
+            start: "top 100%", // Start animating the moment it enters the screen
+            end: "top 60%",    // Finish animating quickly when it's just 40% up the screen
+            scrub: 1,          // 1 second lag for buttery smoothness
           }
         }
       );
@@ -132,8 +132,14 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-32 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
-      <div className="container mx-auto max-w-7xl">
+    <section id="projects" className="py-16 px-6 bg-[var(--color-brand-black)] relative">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="container mx-auto max-w-7xl"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -157,7 +163,7 @@ const Projects = () => {
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

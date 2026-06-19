@@ -26,8 +26,14 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
-      <div className="container mx-auto max-w-7xl">
+    <section id="skills" className="py-16 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="container mx-auto max-w-7xl"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +70,7 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -27,8 +27,14 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-32 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section id="experience" className="py-16 px-6 relative bg-[var(--color-brand-black)] border-t border-white/5">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="container mx-auto max-w-7xl relative z-10"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,47 +54,6 @@ const Experience = () => {
         </motion.div>
 
         <div className="space-y-24">
-          {/* Work Experience */}
-          {resumeData.experience.length > 0 && (
-            <div>
-              <h3 className="text-3xl font-heading font-bold mb-10 text-white border-b border-white/10 pb-4">Work Experience</h3>
-              <div className="space-y-8">
-                {resumeData.experience.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    onClick={() => exp.fullDescription && setSelectedExperience(exp)}
-                    className={`bg-[var(--color-brand-card)] p-10 lg:p-14 rounded-[2rem] flex flex-col md:flex-row md:items-start justify-between gap-8 ${exp.fullDescription ? 'cursor-pointer hover:bg-white/5 hover:ring-1 hover:ring-[var(--color-brand-orange)] transition-all group' : ''}`}
-                  >
-                    <div className="md:w-3/4">
-                      <h4 className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[var(--color-brand-orange)] transition-colors">{exp.role}</h4>
-                      <p className="text-[var(--color-brand-orange)] text-lg font-medium mb-6">{exp.company}</p>
-                      <ul className="space-y-3 text-gray-400 text-base font-body mb-6">
-                        {exp.details.map((detail, i) => (
-                          <li key={i} className="flex gap-4">
-                            <span className="text-gray-600 mt-1">-</span> 
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      {exp.fullDescription && (
-                        <span className="inline-block mt-4 text-sm font-bold text-[var(--color-brand-orange)] uppercase tracking-widest border border-[var(--color-brand-orange)] px-4 py-2 rounded-full group-hover:bg-[var(--color-brand-orange)] group-hover:text-white transition-all">Read Full Experience &rarr;</span>
-                      )}
-                    </div>
-                    <div className="md:w-1/4 md:text-right">
-                      <span className="inline-block px-5 py-3 rounded-full bg-white/5 text-sm font-medium text-gray-300">
-                        {exp.duration}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Education & Certifications (Grid for uniform wide look) */}
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education */}
@@ -138,22 +103,41 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Co-Curricular */}
-          {resumeData.coCurricular && resumeData.coCurricular.length > 0 && (
+          {/* Work Experience */}
+          {resumeData.experience.length > 0 && (
             <div>
-              <h3 className="text-3xl font-heading font-bold mb-10 text-white border-b border-white/10 pb-4">Co-Curricular Interests</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {resumeData.coCurricular.map((item, index) => (
+              <h3 className="text-3xl font-heading font-bold mb-10 text-white border-b border-white/10 pb-4">Work Experience</h3>
+              <div className="space-y-8">
+                {resumeData.experience.map((exp, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="border border-white/10 p-8 rounded-2xl flex flex-col hover:bg-white/5 transition-colors"
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    onClick={() => exp.fullDescription && setSelectedExperience(exp)}
+                    className={`bg-[var(--color-brand-card)] p-10 lg:p-14 rounded-[2rem] flex flex-col md:flex-row md:items-start justify-between gap-8 ${exp.fullDescription ? 'cursor-pointer hover:bg-white/5 hover:ring-1 hover:ring-[var(--color-brand-orange)] transition-all group' : ''}`}
                   >
-                    <h4 className="font-bold text-white mb-3 text-lg leading-tight">{item.title}</h4>
-                    <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
+                    <div className="md:w-3/4">
+                      <h4 className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[var(--color-brand-orange)] transition-colors">{exp.role}</h4>
+                      <p className="text-[var(--color-brand-orange)] text-lg font-medium mb-6">{exp.company}</p>
+                      <ul className="space-y-3 text-gray-400 text-base font-body mb-6">
+                        {exp.details.map((detail, i) => (
+                          <li key={i} className="flex gap-4">
+                            <span className="text-gray-600 mt-1">-</span> 
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {exp.fullDescription && (
+                        <span className="inline-block mt-4 text-sm font-bold text-[var(--color-brand-orange)] uppercase tracking-widest border border-[var(--color-brand-orange)] px-4 py-2 rounded-full group-hover:bg-[var(--color-brand-orange)] group-hover:text-white transition-all">Read Full Experience &rarr;</span>
+                      )}
+                    </div>
+                    <div className="md:w-1/4 md:text-right">
+                      <span className="inline-block px-5 py-3 rounded-full bg-white/5 text-sm font-medium text-gray-300">
+                        {exp.duration}
+                      </span>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -161,7 +145,7 @@ const Experience = () => {
           )}
 
         </div>
-      </div>
+      </motion.div>
 
       {/* Experience Modal */}
       <AnimatePresence>
