@@ -100,6 +100,12 @@ const ProjectCard = ({ project, index }) => {
               <span className="font-medium">View Source</span>
             </a>
           )}
+          {project.certificate && (
+            <a href={project.certificate} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group/link">
+              <ExternalLink size={20} />
+              <span className="font-medium">Certificate</span>
+            </a>
+          )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[var(--color-brand-orange)] hover:text-white transition-colors ml-auto font-medium">
               Live Demo <ExternalLink size={20} />

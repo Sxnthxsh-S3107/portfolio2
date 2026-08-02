@@ -17,7 +17,7 @@
       "degree": "B.Tech in Electronics & Computer Engineering",
       "institution": "Vellore Institute of Technology, Chennai",
       "year": "2024 – 2028",
-      "cgpa": "8.67/10"
+      "cgpa": "8.66/10"
     },
     {
       "degree": "Intermediate / +2",
@@ -54,11 +54,12 @@
 
   "projects": [
     {
-      "title": "Glacial Lake Detection (GLOF Challenge)",
+      "title": "Glacial Lake Detection (TOP 5 Finalist)",
       "description": "Built UNet++ segmentation model with EfficientNet-B3 for satellite imagery analysis using RGB + NDWI.",
       "tech": ["PyTorch", "UNet++", "Computer Vision", "Deep Learning"],
       "github": "https://github.com/vizarrd/ICE_KATTI_GLOF_Challenge",
-      "demo": "https://www.youtube.com/watch?v=WzjRic_fPHM&t=53s"
+      "demo": "https://www.youtube.com/watch?v=WzjRic_fPHM&t=53s",
+      "certificate": "/certificate.pdf"
     },
     {
       "title": "YOLOv8 + ECA Floor Plan Detection",
