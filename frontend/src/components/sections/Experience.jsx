@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 import resumeData from '../../data/resumeData.json';
 
 const Experience = () => {
@@ -186,6 +186,17 @@ const Experience = () => {
                   <span className="text-sm font-medium text-gray-400 bg-black/50 border border-white/10 px-4 py-2 rounded-full">
                     {selectedExperience.duration}
                   </span>
+                  {selectedExperience.certificate && (
+                    <a 
+                      href={selectedExperience.certificate} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="text-sm font-medium text-white bg-[var(--color-brand-orange)] px-4 py-2 rounded-full hover:bg-orange-600 transition-colors flex items-center gap-2"
+                    >
+                      <ExternalLink size={16} />
+                      View Certificate
+                    </a>
+                  )}
                 </div>
 
                 <div className="prose prose-invert prose-lg max-w-none prose-p:text-gray-300 prose-p:leading-relaxed prose-li:text-gray-300 prose-strong:text-white">
